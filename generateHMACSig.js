@@ -6,7 +6,6 @@ const readline = require('readline');
 const generateSignature = (method, host, path, secret, query = null, body = null) => {
     const nowStr = Math.floor(Date.now()).toString();
     let params = [method, nowStr, host, path]
-    console.log(params);
     
     if(query) {
         params.push(query)
@@ -16,7 +15,6 @@ const generateSignature = (method, host, path, secret, query = null, body = null
     }
 
     const stringParams = params.join('\n');
-    console.log('stringParams', stringParams);
     
     return {signature: crypto
         .createHmac('sha256', secret)
